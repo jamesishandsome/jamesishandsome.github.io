@@ -29,6 +29,7 @@ jobs:
     - run: pnpm config set auto-install-peers true
     - run: pnpm install --no-frozen-lockfile
     - run: pnpm run build
+    - run: cp ./dist/index.html ./dist/404.html
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
