@@ -5,5 +5,7 @@ export default defineConfig({
     { path: "/", component: "index" },
     { path: "/docs", component: "docs" },
   ],
+  ssr: {},
+  exportStatic: {},
   npmClient: 'pnpm',
 });
