@@ -22,7 +22,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Setup npm
       - run: npm install --no-frozen-lockfile
       - run: npm run build
       - run: cp ./dist/index.html ./dist/404.html
