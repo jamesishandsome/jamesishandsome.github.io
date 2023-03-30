@@ -16,6 +16,7 @@ export default defineConfig({
     },
     {
       name: '首页',
+      layout: false,
       path: '/home',
       component: './Home',
     },
@@ -25,11 +26,10 @@ export default defineConfig({
       component: './Access',
     },
     {
-        name: ' CRUD 示例',
-        path: '/table',
-        component: './Table',
+      name: ' CRUD 示例',
+      path: '/table',
+      component: './Table',
     },
   ],
   npmClient: 'pnpm',
 });
-

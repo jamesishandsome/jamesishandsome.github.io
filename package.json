@@ -13,12 +13,18 @@
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@ant-design/pro-components": "^2.0.1",
+    "@fullpage/react-fullpage": "^0.1.35",
     "@umijs/max": "^4.0.61",
-    "antd": "^5.0.0"
+    "antd": "^5.0.0",
+    "react95": "^4.0.0",
+    "styled-components": "^5.3.9"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
+    "@types/styled-components": "^5.1.26",
+    "@umijs/lint": "^4.0.61",
+    "eslint": "^8.36.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",

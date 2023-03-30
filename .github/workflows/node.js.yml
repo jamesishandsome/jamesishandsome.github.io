@@ -21,17 +21,17 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Setup pnpm
-      uses: pnpm/action-setup@v2.2.2
-      with:
-        version: 7.3.0
-    - run: pnpm config set auto-install-peers true
-    - run: pnpm install --no-frozen-lockfile
-    - run: pnpm run build
-    - run: cp ./dist/index.html ./dist/404.html
-    - name: Deploy
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./dist
+      - uses: actions/checkout@v3
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 7.3.0
+      - run: pnpm config set auto-install-peers true
+      - run: pnpm install --no-frozen-lockfile
+      - run: pnpm run build
+      - run: cp ./dist/index.html ./dist/404.html
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
