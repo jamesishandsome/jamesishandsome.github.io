@@ -1,14 +1,15 @@
 import React from 'react';
 import {
-    styleReset, AppBar,
-    Button,
-    MenuList,
-    MenuListItem,
-    Separator,
-    TextInput,
-    Toolbar
+  styleReset,
+  AppBar,
+  Button,
+  MenuList,
+  MenuListItem,
+  Separator,
+  TextInput,
+  Toolbar,
 } from 'react95';
-import {createGlobalStyle, ThemeProvider} from 'styled-components';
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import logoIMG from '@/assets/logo.png';
 /* Pick a theme of your choice */
 import original from 'react95/dist/themes/original';
@@ -39,26 +40,63 @@ const GlobalStyles = createGlobalStyle`
   }
 `;
 
-const App = () => (
+const App = () => {
+  const [open, setOpen] = React.useState(false);
+  return (
     <div>
-        <GlobalStyles/>
-        <ThemeProvider theme={original}>
-            <AppBar>
-                <Toolbar style={{justifyContent: 'space-between'}}>
-                    <div>
-                        <Button style={{fontWeight: 'bold'}}>
-                      <img
-                      src={logoIMG}
-                      alt='react95 logo'
-                      style={{ height: '20px', marginRight: 4 }}
-                      />
-                            Start
-                        </Button>
-                    </div>
-                </Toolbar>
-            </AppBar>
-        </ThemeProvider>
+      <GlobalStyles />
+      <ThemeProvider theme={original}>
+        <AppBar>
+          <Toolbar style={{ justifyContent: 'space-between' }}>
+            <div>
+              <Button
+                style={{ fontWeight: 'bold' }}
+                onClick={() => {
+                  setOpen(!open);
+                }}
+              >
+                <img
+                  src={logoIMG}
+                  alt="react95 logo"
+                  style={{ height: '20px', marginRight: 4 }}
+                />
+                Start
+              </Button>
+              {open && (
+                <MenuList
+                  style={{
+                    position: 'absolute',
+                    left: '0',
+                    top: '100%',
+                  }}
+                  onClick={() => setOpen(false)}
+                >
+                  <MenuListItem>
+                    <span role="img" aria-label="👨‍💻">
+                      👨‍💻
+                    </span>
+                    My Profile
+                  </MenuListItem>
+                  <Separator />
+                  <MenuListItem
+                    onClick={() => {
+                      //     close this tab in browser
+                      window.close();
+                    }}
+                  >
+                    <span role="img" aria-label="🔙">
+                      🔙
+                    </span>
+                    Exit
+                  </MenuListItem>
+                </MenuList>
+              )}
+            </div>
+          </Toolbar>
+        </AppBar>
+      </ThemeProvider>
     </div>
-);
+  );
+};
 
 export default App;
