@@ -6,13 +6,15 @@ export default defineConfig({
   model: {},
   initialState: {},
   request: {},
+  title: 'James Hu',
   layout: {
-    title: '@umijs/max',
+    title: 'James Hu',
   },
   esbuildMinifyIIFE: true,
   routes: [
     {
       path: '/',
+      layout: false,
       redirect: '/home',
     },
     {

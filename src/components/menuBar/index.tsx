@@ -82,6 +82,7 @@ const App = () => {
                     onClick={() => {
                       //     close this tab in browser
                       window.close();
+                      1;
                     }}
                   >
                     <span role="img" aria-label="🔙">
