@@ -92,7 +92,14 @@ const Profile = (props: { open: boolean; callback: void }) => {
               style={{ fontSize: '1rem' }}
               className={'window-title'}
             >
-              My Profile
+              <span>My Profile</span>
+              <Button
+                onClick={() => {
+                  callback();
+                }}
+              >
+                <span className="close-icon" />
+              </Button>
             </WindowHeader>
             Please download my resume by inputting the password.
             <div style={{ display: 'flex' }}>
@@ -138,7 +145,7 @@ const Profile = (props: { open: boolean; callback: void }) => {
             </div>
             {alertOpen && (
               <div style={{ position: 'absolute', top: 30, left: '30%' }}>
-                <Window>
+                <Window className={'window'}>
                   <WindowHeader
                     style={{ fontSize: '1rem' }}
                     className={'window-title'}
@@ -147,7 +154,12 @@ const Profile = (props: { open: boolean; callback: void }) => {
                   </WindowHeader>
                   <WindowContent>
                     <p>Wrong password!</p>
-                    <Button onClick={() => setAlertOpen(false)}>OK</Button>
+                    <Button
+                      style={{ marginTop: 20 }}
+                      onClick={() => setAlertOpen(false)}
+                    >
+                      OK
+                    </Button>
                   </WindowContent>
                 </Window>
               </div>

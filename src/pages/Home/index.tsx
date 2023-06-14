@@ -146,6 +146,7 @@ const App = () => {
         </AppBar>
         <Profile
           open={profileOpen}
+          // @ts-ignore
           callback={() => {
             setProfileOpen(!profileOpen);
           }}
