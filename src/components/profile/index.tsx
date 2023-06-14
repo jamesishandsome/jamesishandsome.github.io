@@ -77,6 +77,7 @@ const Profile = (props: { open: boolean; callback: void }) => {
   const inputPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
+  const [alertOpen, setAlertOpen] = useState(false);
   return (
     <Wrapper>
       {open && (
@@ -93,21 +94,6 @@ const Profile = (props: { open: boolean; callback: void }) => {
             >
               My Profile
             </WindowHeader>
-            {/*<Toolbar>*/}
-            {/*  <Button variant="menu" size="sm">*/}
-            {/*    Save*/}
-            {/*  </Button>*/}
-            {/*  <Button*/}
-            {/*    variant="menu"*/}
-            {/*    size="sm"*/}
-            {/*    onClick={() => {*/}
-            {/*      callback();*/}
-            {/*      console.log(open);*/}
-            {/*    }}*/}
-            {/*  >*/}
-            {/*    Edit*/}
-            {/*  </Button>*/}
-            {/*</Toolbar>*/}
             Please download my resume by inputting the password.
             <div style={{ display: 'flex' }}>
               <TextInput
@@ -119,14 +105,53 @@ const Profile = (props: { open: boolean; callback: void }) => {
               <Button
                 style={{ marginLeft: 4 }}
                 onClick={async () => {
-                  await axios.post('http://api.james.ga/', {
-                    password,
-                  });
+                  // the file will be return in data, download it
+                  await axios
+                    .post(
+                      'http://api.james.ga',
+                      {
+                        password,
+                      },
+                      {
+                        responseType: 'blob',
+                      },
+                    )
+                    .then((response) => {
+                      const url = window.URL.createObjectURL(
+                        new Blob([response.data], {
+                          type: 'application/pdf',
+                        }),
+                      );
+                      const link = document.createElement('a');
+                      link.href = url;
+                      link.setAttribute('download', 'resume.pdf');
+                      document.body.appendChild(link);
+                      link.click();
+                    })
+                    .catch((error) => {
+                      setAlertOpen(true);
+                    });
                 }}
               >
                 Download
               </Button>
             </div>
+            {alertOpen && (
+              <div style={{ position: 'absolute', top: 30, left: '30%' }}>
+                <Window>
+                  <WindowHeader
+                    style={{ fontSize: '1rem' }}
+                    className={'window-title'}
+                  >
+                    Alert
+                  </WindowHeader>
+                  <WindowContent>
+                    <p>Wrong password!</p>
+                    <Button onClick={() => setAlertOpen(false)}>OK</Button>
+                  </WindowContent>
+                </Window>
+              </div>
+            )}
           </Window>
         </>
       )}
