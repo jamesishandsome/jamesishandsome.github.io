@@ -144,7 +144,12 @@ const App = () => {
             <div style={{ width: 150, cursor: 'default' }}>{time}</div>
           </Toolbar>
         </AppBar>
-        <Profile open={profileOpen} />
+        <Profile
+          open={profileOpen}
+          callback={() => {
+            setProfileOpen(!profileOpen);
+          }}
+        />
       </ThemeProvider>
       <Menu id={MENU_ID}>
         <Item id="copy" onClick={handleItemClick}>

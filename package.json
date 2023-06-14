@@ -16,6 +16,7 @@
     "@fullpage/react-fullpage": "^0.1.35",
     "@umijs/max": "^4.0.61",
     "antd": "^5.0.0",
+    "axios": "^1.4.0",
     "dayjs": "^1.11.8",
     "react-contexify": "^6.0.0",
     "react95": "^4.0.0",
