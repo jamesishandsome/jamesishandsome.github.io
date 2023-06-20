@@ -21,7 +21,7 @@ const MENU_ID = 'blahblah';
 import ms_sans_serif from 'react95/dist/fonts/ms_sans_serif.woff2';
 import ms_sans_serif_bold from 'react95/dist/fonts/ms_sans_serif_bold.woff2';
 import { Profile } from '@/components/profile';
-
+import chatgptLogo from '@/assets/open-ai-seeklogo.com.svg';
 const GlobalStyles = createGlobalStyle`
   ${styleReset}
 
@@ -124,6 +124,18 @@ const App = () => {
                       👨‍💻
                     </span>
                     My Profile
+                  </MenuListItem>
+                  <MenuListItem
+                    onClick={() => {
+                      window.open('http://chat.james.ga', '_blank');
+                    }}
+                  >
+                    <img
+                      src={chatgptLogo}
+                      alt="ChatGPT"
+                      style={{ height: '20px', marginRight: 4 }}
+                    />
+                    ChatGPT
                   </MenuListItem>
                   <Separator />
                   <MenuListItem
