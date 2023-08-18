@@ -7,9 +7,7 @@ export default defineConfig({
   initialState: {},
   request: {},
   title: 'James Hu',
-  layout: {
-    title: 'James Hu',
-  },
+  layout: false,
   esbuildMinifyIIFE: true,
   routes: [
     {
@@ -19,7 +17,6 @@ export default defineConfig({
     },
     {
       name: '首页',
-      layout: false,
       path: '/home',
       component: './Home',
     },
@@ -33,6 +30,13 @@ export default defineConfig({
       path: '/table',
       component: './Table',
     },
+    {
+      name: 'What for lunch',
+      path: '/lunch',
+      component: './Lunch',
+    },
   ],
+
   npmClient: 'pnpm',
+  tailwindcss: {},
 });
