@@ -1,6 +1,8 @@
 import { createFromIconfontCN, GithubOutlined } from '@ant-design/icons';
-import { ReactNode, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import React from 'react';
+import * as Sakana from 'sakana';
+import './index.less';
 const ProgramShortCut = (props: {
   name: string;
   color: string;
@@ -26,6 +28,20 @@ const ChatGPTLOGO = createFromIconfontCN({
   scriptUrl: '//at.alicdn.com/t/c/font_4269989_a7cr1eqkw3l.js', // 在 iconfont.cn 上生成
 });
 export default function Home() {
+  useEffect(() => {
+    Sakana.setMute(true);
+    Sakana.init({
+      el: '.sakana-box', // 启动元素 node 或 选择器
+      scale: 0.5, // 缩放倍数
+      inertia: 0.01, // 惯性
+      decay: 0.99, // 衰减
+      r: 0, // 启动角度
+      y: 10, // 启动高度
+      scale: 0.5, // 缩放倍数
+      translateY: 0, // 位移高度
+      canSwitchCharacter: false, // 允许换角色
+    });
+  }, []);
   return (
     <div className={'flex flex-row mx-10'}>
       <div className={'grid grid-cols-1 gap-4'}>

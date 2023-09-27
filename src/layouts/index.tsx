@@ -199,7 +199,7 @@ export default function Layout() {
             <Separator />
           </Menu>
           <Outlet />
-          <div className="sakana-box"></div>
+          <div className="sakana-box "></div>
         </div>
       </StyleProvider>
     </QueryClientProvider>
