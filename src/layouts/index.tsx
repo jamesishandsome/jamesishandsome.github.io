@@ -33,6 +33,7 @@ import {
   useQuery,
 } from '@tanstack/react-query';
 import { StyleProvider } from '@ant-design/cssinjs';
+// @ts-ignore
 import mojs from '@mojs/core';
 import { API } from '@/api';
 import axios from 'axios';
