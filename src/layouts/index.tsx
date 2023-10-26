@@ -8,6 +8,7 @@ import {
   MenuListItem,
   Toolbar,
 } from 'react95';
+import React from 'react';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import logoIMG from '@/assets/logo.png';
 /* Pick a theme of your choice */
