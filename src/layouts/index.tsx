@@ -1,5 +1,4 @@
-import { Link, Outlet } from '@umijs/max';
-import React, { useEffect } from 'react';
+import { Outlet } from '@umijs/max';
 import {
   styleReset,
   AppBar,
@@ -7,7 +6,6 @@ import {
   MenuList,
   Separator,
   MenuListItem,
-  TextInput,
   Toolbar,
 } from 'react95';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
@@ -15,7 +13,7 @@ import logoIMG from '@/assets/logo.png';
 /* Pick a theme of your choice */
 import original from 'react95/dist/themes/original';
 import dayjs from 'dayjs';
-import { Menu, Item, Submenu, useContextMenu } from 'react-contexify';
+import { Menu, Item, useContextMenu } from 'react-contexify';
 import 'react-contexify/ReactContexify.css';
 
 const MENU_ID = 'blahblah';
@@ -35,7 +33,6 @@ import {
 import { StyleProvider } from '@ant-design/cssinjs';
 // @ts-ignore
 import mojs from '@mojs/core';
-import { API } from '@/api';
 import axios from 'axios';
 const queryClient = new QueryClient();
 const GlobalStyles = createGlobalStyle`
@@ -70,9 +67,9 @@ const LikeCount = () => {
       return data;
     },
   });
-  if (isLoading) return 'Loading...';
+  if (isLoading) return <div>Loading...</div>;
 
-  if (error) return 'An error has occurred: ' + error;
+  if (error) return <div>{'An error has occurred: ' + error}</div>;
   if (data) console.log(data);
   return (
     <div style={{ width: 150, cursor: 'default' }}>
@@ -82,7 +79,7 @@ const LikeCount = () => {
 };
 const LikeButton = () => {
   const addLikeCount = useMutation({
-    mutationFn: (newTodo) =>
+    mutationFn: () =>
       axios.get('https://james-like.huyaotian881600.workers.dev/like'),
     // When mutate is called:
     onMutate: async () => {
@@ -160,6 +157,7 @@ const LikeButton = () => {
   return (
     <Item
       onClick={(e) => {
+        // @ts-ignore
         const coords = { x: e.event.pageX, y: e.event.pageY };
         burst.tune(coords);
         circle.tune(coords);
@@ -191,17 +189,6 @@ export default function Layout() {
     });
   }
 
-  const handleItemClick = ({ id, event, props }) => {
-    switch (id) {
-      case 'copy':
-        console.log(event, props);
-        break;
-      case 'cut':
-        console.log(event, props);
-        break;
-      //etc...
-    }
-  };
   const [time, setTime] = React.useState(dayjs().format('ddd D MMM h:mm A'));
   React.useEffect(() => {
     const interval = setInterval(() => {
