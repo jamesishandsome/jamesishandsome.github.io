@@ -13,7 +13,6 @@ import { useState } from 'react';
 import axios from 'axios';
 
 const Wrapper = styled.div`
-  padding: 5rem;
   background: ${({ theme }) => theme.desktopBackground};
 
   .window-title {
@@ -82,7 +81,7 @@ const Profile = (props: { open: boolean; callback: void }) => {
     <Wrapper>
       {open && (
         //   put the words at the middle of Window
-        <>
+        <div className={'absolute top-20 inset-20'}>
           {' '}
           <Window
             className={'window'}
@@ -165,7 +164,7 @@ const Profile = (props: { open: boolean; callback: void }) => {
               </div>
             )}
           </Window>
-        </>
+        </div>
       )}
     </Wrapper>
   );

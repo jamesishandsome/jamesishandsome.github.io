@@ -1,6 +1,24 @@
 import { defineConfig } from '@umijs/max';
 
 export default defineConfig({
+  chainWebpack(config) {
+    config.set('experiments', {
+      ...config.get('experiments'),
+      asyncWebAssembly: true,
+    });
+
+    const REG = /\.wasm$/;
+
+    config.module.rule('asset').exclude.add(REG).end();
+
+    config.module
+      .rule('wasm')
+      .test(REG)
+      .exclude.add(/node_modules/)
+      .end()
+      .type('webassembly/async')
+      .end();
+  },
   antd: {},
   access: {},
   model: {},
@@ -16,19 +34,14 @@ export default defineConfig({
       redirect: '/home',
     },
     {
-      name: '首页',
+      name: 'Home Page',
       path: '/home',
       component: './Home',
     },
     {
-      name: '权限演示',
-      path: '/access',
-      component: './Access',
-    },
-    {
-      name: ' CRUD 示例',
-      path: '/table',
-      component: './Table',
+      name: 'wasm demo',
+      path: '/wasm',
+      component: './Wasm',
     },
     {
       name: 'What for lunch',

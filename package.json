@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "max dev",
     "build": "max build",
+    "build-wasm": "wasm-pack build ./src/pages/Wasm/wasm",
     "format": "prettier --cache --write .",
     "prepare": "husky install",
     "postinstall": "max setup",

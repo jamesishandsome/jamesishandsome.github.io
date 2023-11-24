@@ -43,7 +43,7 @@ export default function Home() {
     });
   }, []);
   return (
-    <div className={'flex flex-row mx-10'}>
+    <div className={'flex flex-row mx-10 pt-20'}>
       <div className={'grid grid-cols-1 gap-4'}>
         <ProgramShortCut
           name={'Github'}
