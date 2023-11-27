@@ -29,13 +29,8 @@ export default defineConfig({
   esbuildMinifyIIFE: true,
   routes: [
     {
-      path: '/',
-      layout: false,
-      redirect: '/home',
-    },
-    {
       name: 'Home Page',
-      path: '/home',
+      path: '/',
       component: './Home',
     },
     {
@@ -48,6 +43,7 @@ export default defineConfig({
       path: '/lunch',
       component: './Lunch',
     },
+    { path: '/*', component: './404' },
   ],
 
   npmClient: 'pnpm',

@@ -3,18 +3,25 @@ import { ReactNode, useEffect, useState } from 'react';
 import React from 'react';
 import * as Sakana from 'sakana';
 import './index.less';
+import { message } from 'antd';
+
 const ProgramShortCut = (props: {
   name: string;
   color: string;
   url: string;
   logoComponent: ReactNode;
+  disabled?: boolean;
 }) => {
   return (
     <button
       className={
-        'flex flex-col justify-center w-[5rem] aspect-square hover:shadow-md focus:shadow-inner'
+        'flex flex-col justify-center w-[5rem] aspect-square hover:shadow-md focus:shadow-inner '
       }
       onClick={() => {
+        if (props.disabled) {
+          message.error('This program is not available now.');
+          return;
+        }
         window.open(props.url, '_blank');
       }}
     >
@@ -43,22 +50,30 @@ export default function Home() {
     });
   }, []);
   return (
-    <div className={'flex flex-row mx-10 pt-20'}>
-      <div className={'grid grid-cols-1 gap-4'}>
-        <ProgramShortCut
-          name={'Github'}
-          url={'https://www.github.com/jamesishandsome'}
-          color={'#000'}
-          logoComponent={<GithubOutlined className={'text-5xl'} />}
-        />
-        <ProgramShortCut
-          name={'ChatGPT'}
-          url={'https://chat.james.ga'}
-          color={'#000'}
-          logoComponent={
-            <ChatGPTLOGO type={'icon-chatgpt'} className={'text-5xl'} />
-          }
-        />
+    <div>
+      <div className={'flex flex-row mx-10 pt-20'}>
+        <div className={'grid grid-cols-1 gap-4'}>
+          <ProgramShortCut
+            name={'Github'}
+            url={'https://www.github.com/jamesishandsome'}
+            color={'#000'}
+            logoComponent={<GithubOutlined className={'text-5xl'} />}
+          />
+          <ProgramShortCut
+            disabled
+            name={'ChatGPT'}
+            url={'https://chat.james.ga'}
+            color={'#000'}
+            logoComponent={
+              <ChatGPTLOGO type={'icon-chatgpt'} className={'text-5xl'} />
+            }
+          />
+        </div>
+      </div>
+      <div
+        className={'flex flex-col justify-center items-center w-full h-full'}
+      >
+        <h1 className={'text-6xl'}>Hi! Welcome to my Page!</h1>
       </div>
     </div>
   );
