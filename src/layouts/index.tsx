@@ -288,6 +288,7 @@ export default function Layout() {
                 setProfileOpen(!profileOpen);
               }}
             />
+            <Outlet />
           </ThemeProvider>
           <Menu id={MENU_ID}>
             <Separator />
@@ -310,7 +311,7 @@ export default function Layout() {
             </Item>
             <Separator />
           </Menu>
-          <Outlet />
+
           <div className="sakana-box "></div>
         </div>
       </StyleProvider>

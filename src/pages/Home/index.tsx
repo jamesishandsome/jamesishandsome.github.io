@@ -1,9 +1,11 @@
 import { createFromIconfontCN, GithubOutlined } from '@ant-design/icons';
 import { ReactNode, useEffect, useState } from 'react';
 import React from 'react';
+// @ts-ignore
 import * as Sakana from 'sakana';
 import './index.less';
 import { message } from 'antd';
+import { MenuList, MenuListItem, Separator } from 'react95';
 
 const ProgramShortCut = (props: {
   name: string;
@@ -44,7 +46,6 @@ export default function Home() {
       decay: 0.99, // 衰减
       r: 0, // 启动角度
       y: 10, // 启动高度
-      scale: 0.5, // 缩放倍数
       translateY: 0, // 位移高度
       canSwitchCharacter: false, // 允许换角色
     });
@@ -74,6 +75,13 @@ export default function Home() {
         className={'flex flex-col justify-center items-center w-full h-full'}
       >
         <h1 className={'text-6xl'}>Hi! Welcome to my Page!</h1>
+        {/*<MenuList inline style={{ margin: 30 }}>*/}
+        {/*  <MenuListItem>Item 1</MenuListItem>*/}
+        {/*  <Separator orientation="vertical" size="43px" />*/}
+        {/*  <MenuListItem>Item 2</MenuListItem>*/}
+        {/*  <Separator orientation="vertical" size="43px" />*/}
+        {/*  <MenuListItem>Item 3</MenuListItem>*/}
+        {/*</MenuList>*/}
       </div>
     </div>
   );

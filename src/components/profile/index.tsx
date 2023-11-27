@@ -114,7 +114,7 @@ const Profile = (props: { open: boolean; callback: void }) => {
                   // the file will be return in data, download it
                   await axios
                     .post(
-                      'https://api.james.ga',
+                      'https://james.ga/api/password',
                       {
                         password,
                       },
