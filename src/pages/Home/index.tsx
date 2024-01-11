@@ -4,8 +4,7 @@ import React from 'react';
 // @ts-ignore
 import * as Sakana from 'sakana';
 import './index.less';
-import { message } from 'antd';
-import { MenuList, MenuListItem, Separator } from 'react95';
+import { Button, Window, WindowContent, WindowHeader } from 'react95';
 
 const ProgramShortCut = (props: {
   name: string;
@@ -13,7 +12,9 @@ const ProgramShortCut = (props: {
   url: string;
   logoComponent: ReactNode;
   disabled?: boolean;
+  callback?: () => void;
 }) => {
+  const callback = props.callback || (() => {});
   return (
     <button
       className={
@@ -21,7 +22,7 @@ const ProgramShortCut = (props: {
       }
       onClick={() => {
         if (props.disabled) {
-          message.error('This program is not available now.');
+          callback();
           return;
         }
         window.open(props.url, '_blank');
@@ -37,6 +38,7 @@ const ChatGPTLOGO = createFromIconfontCN({
   scriptUrl: '//at.alicdn.com/t/c/font_4269989_a7cr1eqkw3l.js', // 在 iconfont.cn 上生成
 });
 export default function Home() {
+  const [open, setOpen] = useState(false);
   useEffect(() => {
     Sakana.setMute(true);
     Sakana.init({
@@ -52,6 +54,23 @@ export default function Home() {
   }, []);
   return (
     <div>
+      {/*at middle*/}
+
+      {open && (
+        <Window
+          className={'!absolute top-20 left-1/2 transform -translate-x-1/2'}
+        >
+          <WindowHeader className={'window-title'}>
+            <span>ChatGPT</span>
+          </WindowHeader>
+          <WindowContent>
+            Sorry, my ChatGPT website is under maintenance for now.
+            <br />
+            <Button onClick={() => setOpen(false)}>OK</Button>
+          </WindowContent>
+        </Window>
+      )}
+
       <div className={'flex flex-row mx-10 pt-20'}>
         <div className={'grid grid-cols-1 gap-4'}>
           <ProgramShortCut
@@ -68,6 +87,9 @@ export default function Home() {
             logoComponent={
               <ChatGPTLOGO type={'icon-chatgpt'} className={'text-5xl'} />
             }
+            callback={() => {
+              setOpen(true);
+            }}
           />
         </div>
       </div>
@@ -75,6 +97,8 @@ export default function Home() {
         className={'flex flex-col justify-center items-center w-full h-full'}
       >
         <h1 className={'text-6xl'}>Hi! Welcome to my Page!</h1>
+        <div className={'my-20 text-4xl'}>Want to know more about me?</div>
+        <Button size={'lg'}>Check My Profile</Button>
         {/*<MenuList inline style={{ margin: 30 }}>*/}
         {/*  <MenuListItem>Item 1</MenuListItem>*/}
         {/*  <Separator orientation="vertical" size="43px" />*/}

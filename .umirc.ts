@@ -39,10 +39,15 @@ export default defineConfig({
       component: './Wasm',
     },
     {
-      name: 'What for lunch',
-      path: '/lunch',
-      component: './Lunch',
+      name: 'Profile',
+      path: '/profile',
+      component: './cv',
     },
+    // {
+    //   name: 'What for lunch',
+    //   path: '/lunch',
+    //   component: './Lunch',
+    // },
     { path: '/*', component: './404' },
   ],
 
