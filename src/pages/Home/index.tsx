@@ -80,7 +80,6 @@ export default function Home() {
             logoComponent={<GithubOutlined className={'text-5xl'} />}
           />
           <ProgramShortCut
-            disabled
             name={'ChatGPT'}
             url={'https://chat.james.ga'}
             color={'#000'}
@@ -98,7 +97,14 @@ export default function Home() {
       >
         <h1 className={'text-6xl'}>Hi! Welcome to my Page!</h1>
         <div className={'my-20 text-4xl'}>Want to know more about me?</div>
-        <Button size={'lg'}>Check My Profile</Button>
+        <Button
+          onClick={() => {
+            window.open('https://chat.james.ga', '_blank');
+          }}
+          size={'lg'}
+        >
+          Chat with virtual me
+        </Button>
         {/*<MenuList inline style={{ margin: 30 }}>*/}
         {/*  <MenuListItem>Item 1</MenuListItem>*/}
         {/*  <Separator orientation="vertical" size="43px" />*/}

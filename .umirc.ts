@@ -43,6 +43,11 @@ export default defineConfig({
       path: '/profile',
       component: './cv',
     },
+    {
+      name: 'Chat',
+      path: '/chat',
+      component: './Chat',
+    },
     // {
     //   name: 'What for lunch',
     //   path: '/lunch',
