@@ -70,7 +70,7 @@ const Wrapper = styled.div`
     padding-left: 0.25rem;
   }
 `;
-const Profile = (props: { open: boolean; callback: void }) => {
+const Profile = (props: { open: boolean; callback: () => {} }) => {
   const { open, callback } = props;
   const [password, setPassword] = useState('');
   const inputPassword = (e: React.ChangeEvent<HTMLInputElement>) => {

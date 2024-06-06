@@ -8,7 +8,7 @@ import {
   MenuListItem,
   Toolbar,
 } from 'react95';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import logoIMG from '@/assets/logo.png';
 /* Pick a theme of your choice */
@@ -35,6 +35,8 @@ import { StyleProvider } from '@ant-design/cssinjs';
 // @ts-ignore
 import mojs from '@mojs/core';
 import axios from 'axios';
+import { useResponsive } from 'ahooks';
+
 const queryClient = new QueryClient();
 const GlobalStyles = createGlobalStyle`
   ${styleReset}
@@ -44,6 +46,12 @@ const GlobalStyles = createGlobalStyle`
     src: url('${ms_sans_serif}') format('woff2');
     font-weight: 400;
     font-style: normal
+  }
+
+  //cursor
+  body {
+    cursor: url('/cursor-2.png'), auto;
+  !important;
   }
 
   @font-face {
@@ -175,6 +183,7 @@ const LikeButton = () => {
   );
 };
 export default function Layout() {
+  const responsive = useResponsive();
   const [open, setOpen] = React.useState(false);
   const [profileOpen, setProfileOpen] = React.useState(false);
   const { show } = useContextMenu({
@@ -197,6 +206,10 @@ export default function Layout() {
     }, 1000);
     return () => clearInterval(interval);
   }, []);
+
+  if (!responsive.lg) {
+    return <div>Sorry! I am too lazy so I haven't handled responsive yet!</div>;
+  }
   return (
     <QueryClientProvider client={queryClient}>
       <StyleProvider hashPriority="high">
@@ -312,7 +325,7 @@ export default function Layout() {
             <Separator />
           </Menu>
 
-          <div className="sakana-box "></div>
+          <div className="sakana-box z-20"></div>
         </div>
       </StyleProvider>
     </QueryClientProvider>

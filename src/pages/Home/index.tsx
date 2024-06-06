@@ -1,11 +1,18 @@
-import { createFromIconfontCN, GithubOutlined } from '@ant-design/icons';
+import {
+  createFromIconfontCN,
+  GithubOutlined,
+  LinkedinOutlined,
+} from '@ant-design/icons';
 import { ReactNode, useEffect, useState } from 'react';
 import React from 'react';
 // @ts-ignore
 import * as Sakana from 'sakana';
 import './index.less';
 import { Button, Window, WindowContent, WindowHeader } from 'react95';
-
+import { Dialog } from '@headlessui/react';
+import { KnowMe } from '@/pages/Home/components/knowMe';
+import { animations } from '@formkit/drag-and-drop';
+import { useDragAndDrop } from '@formkit/drag-and-drop/react';
 const ProgramShortCut = (props: {
   name: string;
   color: string;
@@ -39,6 +46,7 @@ const ChatGPTLOGO = createFromIconfontCN({
 });
 export default function Home() {
   const [open, setOpen] = useState(false);
+  const [openKnowMyself, setOpenKnowMyself] = useState(false);
   useEffect(() => {
     Sakana.setMute(true);
     Sakana.init({
@@ -52,6 +60,23 @@ export default function Home() {
       canSwitchCharacter: false, // 允许换角色
     });
   }, []);
+
+  const [parent, icons] = useDragAndDrop(['github', 'linkedin'], {
+    plugins: [animations()],
+  });
+
+  const iconList = [
+    {
+      name: 'github',
+      url: 'https://www.github.com/jamesishandsome',
+      logo: <GithubOutlined className={'text-5xl'} />,
+    },
+    {
+      name: 'linkedin',
+      url: 'https://www.linkedin.com/in/yaotian-hu-b8059512a/',
+      logo: <LinkedinOutlined className={'text-5xl'} />,
+    },
+  ];
   return (
     <div>
       {/*at middle*/}
@@ -73,23 +98,28 @@ export default function Home() {
 
       <div className={'flex flex-row mx-10 pt-20'}>
         <div className={'grid grid-cols-1 gap-4'}>
-          <ProgramShortCut
-            name={'Github'}
-            url={'https://www.github.com/jamesishandsome'}
-            color={'#000'}
-            logoComponent={<GithubOutlined className={'text-5xl'} />}
-          />
-          <ProgramShortCut
-            name={'ChatGPT'}
-            url={'https://chat.james.ga'}
-            color={'#000'}
-            logoComponent={
-              <ChatGPTLOGO type={'icon-chatgpt'} className={'text-5xl'} />
-            }
-            callback={() => {
-              setOpen(true);
-            }}
-          />
+          <ul ref={parent}>
+            {icons.map((icon) => (
+              <li className="cassette" data-label={icon} key={icon}>
+                {iconList.map((item) => {
+                  if (item.name === icon) {
+                    return (
+                      <ProgramShortCut
+                        key={item.name}
+                        name={item.name}
+                        url={item.url}
+                        color={'#000'}
+                        logoComponent={item.logo}
+                      />
+                    );
+                  }
+                })}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className={'flex flex-col justify-center items-center'}>
+          <div className={'text-2xl'}>👈 Try drag and drop the icons!</div>
         </div>
       </div>
       <div
@@ -99,20 +129,19 @@ export default function Home() {
         <div className={'my-20 text-4xl'}>Want to know more about me?</div>
         <Button
           onClick={() => {
-            window.open('https://chat.james.ga', '_blank');
+            setOpenKnowMyself(true);
           }}
           size={'lg'}
         >
-          Chat with virtual me
+          Know More About Me
         </Button>
-        {/*<MenuList inline style={{ margin: 30 }}>*/}
-        {/*  <MenuListItem>Item 1</MenuListItem>*/}
-        {/*  <Separator orientation="vertical" size="43px" />*/}
-        {/*  <MenuListItem>Item 2</MenuListItem>*/}
-        {/*  <Separator orientation="vertical" size="43px" />*/}
-        {/*  <MenuListItem>Item 3</MenuListItem>*/}
-        {/*</MenuList>*/}
       </div>
+      <KnowMe
+        open={openKnowMyself}
+        close={() => {
+          setOpenKnowMyself(false);
+        }}
+      />
     </div>
   );
 }
