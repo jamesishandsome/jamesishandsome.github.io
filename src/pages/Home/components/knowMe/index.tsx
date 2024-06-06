@@ -1,5 +1,5 @@
 import React from 'react';
-import { Window, WindowContent, WindowHeader } from 'react95';
+import { Button, Window, WindowContent, WindowHeader } from 'react95';
 import { ThemeProvider } from 'styled-components';
 import white from 'react95/dist/themes/white';
 const KnowMe = (props: { open: boolean; close: () => void }) => {
@@ -15,9 +15,9 @@ const KnowMe = (props: { open: boolean; close: () => void }) => {
           <Window className={'w-full h-full'}>
             <WindowHeader className={'window-title'}>
               <span>Know Me</span>
-              <button className={'float-right'} onClick={props.close}>
+              <Button className={'float-right'} onClick={props.close}>
                 x
-              </button>
+              </Button>
             </WindowHeader>
             <WindowContent className={'h-full w-full'}>
               <div

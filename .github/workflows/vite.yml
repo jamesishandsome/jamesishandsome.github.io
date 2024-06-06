@@ -35,13 +35,13 @@ jobs:
       - name: Install Pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: 8
+          version: 9
       - name: Build Rust
         run: pnpm run build-wasm
       - name: Install PNPM
         uses: pnpm/action-setup@v2
         with:
-          version: 8
+          version: 9
           run_install: |
             - recursive: true
               args: [--frozen-lockfile, --strict-peer-dependencies]
