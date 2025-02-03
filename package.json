@@ -36,6 +36,11 @@
     "sakana": "^1.0.8",
     "styled-components": "^5.3.11"
   },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "core-js","core-js-pure","es5-ext","esbuild"
+    ]
+  },
   "devDependencies": {
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
